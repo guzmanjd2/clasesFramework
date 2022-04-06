@@ -1,11 +1,44 @@
-<h1>PRODUCTOS</h1>
+@extends('layouts.app')
 
-@foreach ($productosList as $product) 
+@section('css')
+@endsection
+
+@section('buttons')
+   <!--<a class="btn btn-primary mr-2" href="{{ 'products/create' }}">Crear Productos</a>-->
+   <a class="btn btn-primary mr-2" href="{{ route('products.create') }}">Crear Productos</a>
+@endsection
+
+@section('content')
+
+
+<h2 class="text-center mb-5">
+    Administracion de productos
+</h2>
+<div class="col-md-10 mx-auto bg-white p-3">
+    <table class="table">
+        <thead class="bg-primary text-light">
+            <tr>
+                <th scole="col">Codigo</th>
+                <th scole="col">Nombre</th>
+                <th scole="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+        </tbody>
+    </table>
+</div>
+
+
+{{-- @foreach ($productosList as $product) 
     <li> {{$product}} </li>
-@endforeach
+@endforeach --}}
 
-<h1>PROVEEDORES</h1>
 
-@foreach ($proveedoresList as $proveedor) 
+{{-- @foreach ($proveedoresList as $proveedor) 
     <li> {{$proveedor}} </li>
-@endforeach
+@endforeach --}}
+@endsection
+
+@section('js')
+@endsection

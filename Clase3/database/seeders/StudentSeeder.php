@@ -14,14 +14,14 @@ class StudentSeeder extends Seeder
      */
     public function run()
     {
+        Student::truncate();
         Student::create(
             [
                 'id'=>1,
                 'name'=>'Jose David Guzman',
                 'career'=>'Ing Sistemas Informaticos',
                 'age'=>27,
-            ],
-            []
+            ]
         );
     }
 }

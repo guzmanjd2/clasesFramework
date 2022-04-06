@@ -22,7 +22,11 @@ Route::get('/', function () {
     return view('productos');
 });*/
 
-Route::get('/products/index',[ProductController::class,'mostrar']);
+Route::get('/productos',[ProductController::class,'mostrar']);
+//Route::get('/products',[ProductController::class,'index']);
 Auth::routes();
+Route::get('/products',[ProductController::class,'index'])->name('products.index');
+Route::get('/products/create',[ProductController::class,'create'])->name('products.create');
+Route::post('/products',[ProductController::class,'store'])->name('products.store');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
