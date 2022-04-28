@@ -1,10 +1,12 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
+
 
 class ProductController extends Controller
 {
@@ -51,15 +53,33 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->all());
-        $data=request();
+        //dd($request['image']->
+       // store('upload-productos','public'));
+       // $data=request();
         //tabla a la que le queremos insertar registros
         $data=request()->validate([
-            'productName'=>'required|min:5|max:50'
+            'productName'=>'required|min:5|max:50',
+            'price'=>'required',
+            'barcode'=>'required|min:5|max:8',
+            'supplier'=>'required',
+            'image'=>'required|image'
         ]);
 
+        $ruta_imagen=$request['image']->
+        store('upload-productos','public');
+
+        $img=Image::make(
+            public_path("storage/{$ruta_imagen}"))->
+            fit(1000,550);
+        $img->save();
+        
         DB::table('products')->insert([
-            'productName'=>$data['productName']
+            'productName'=>$data['productName'],
+            'price'=>$data['price'],
+            'barcode'=>$data['barcode'],
+            'image'=>$ruta_imagen,
+            'supplier_id'=>$data['supplier'],
+            'user_id'=>Auth::user()->id
         ]);
         return view('products.index');
     }

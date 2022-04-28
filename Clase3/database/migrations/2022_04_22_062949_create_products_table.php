@@ -20,10 +20,10 @@ class CreateProductsTable extends Migration
             $table->foreignId('supplier_id')
             ->references('id')->on('suppliers')
             ->comment('Relacion con tabla supplier');
-
             $table->foreignId('user_id')
             ->references('id')->on('users')
             ->comment('Relacion con tabla Usuarios');
+            $table->string('image')->nullable();
             /* $table->string('product_description');
             $table->string('product_unit_price');
             $table->foreignId('providercode')->references('code')->on('proveedors'); */
